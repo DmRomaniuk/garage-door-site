@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "title": "Modern full-view aluminum door",
+      "category": "Installation",
+      "image": "/images/gallery-1.svg",
+      "description": "Black full-view aluminum & frosted glass, Springfield"
+    },
+    {
+      "title": "Carriage-house steel double door",
+      "category": "Installation",
+      "image": "/images/gallery-2.svg",
+      "description": "Insulated carriage style with decorative hardware, Chatham"
+    },
+    {
+      "title": "Classic raised-panel replacement",
+      "category": "Installation",
+      "image": "/images/gallery-3.svg",
+      "description": "Two-tone raised panel with window row, Rochester"
+    },
+    {
+      "title": "High-cycle torsion spring swap",
+      "category": "Repair",
+      "image": "/images/gallery-4.svg",
+      "description": "Both springs replaced + full rebalance, Sherman"
+    },
+    {
+      "title": "Smart opener upgrade",
+      "category": "Openers",
+      "image": "/images/gallery-5.svg",
+      "description": "Wall-mount jackshaft opener with battery backup, Springfield"
+    },
+    {
+      "title": "Storm damage repair",
+      "category": "Repair",
+      "image": "/images/gallery-6.svg",
+      "description": "Panel and track replacement after wind damage, Riverton"
+    }
+  ]
+}

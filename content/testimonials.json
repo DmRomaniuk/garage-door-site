@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "name": "Mike R.",
+      "location": "Springfield, IL",
+      "rating": 5,
+      "text": "Spring snapped on a Saturday morning with my truck trapped inside. They picked up on the second ring and had it fixed by noon. Fair price, zero drama.",
+      "service": "Spring Replacement"
+    },
+    {
+      "name": "Sarah T.",
+      "location": "Chatham, IL",
+      "rating": 5,
+      "text": "We replaced two old builder-grade doors with insulated carriage-style ones. The crew was on time, tidy, and the doors look incredible. Neighbors keep asking who did it.",
+      "service": "New Door Installation"
+    },
+    {
+      "name": "James & Linda K.",
+      "location": "Rochester, IL",
+      "rating": 5,
+      "text": "Our opener died after 18 years. They walked us through options without upselling, installed a quiet belt-drive with Wi-Fi, and showed us the app before leaving.",
+      "service": "Opener Installation"
+    },
+    {
+      "name": "Dan P.",
+      "location": "Sherman, IL",
+      "rating": 5,
+      "text": "Honest company. Another outfit quoted me a full door replacement — these guys fixed the track and rollers for a fraction of that. Earned a customer for life.",
+      "service": "Garage Door Repair"
+    },
+    {
+      "name": "Emily V.",
+      "location": "Auburn, IL",
+      "rating": 5,
+      "text": "Annual tune-up is the best money I spend on the house. The door is silent now and they caught a fraying cable before it became an emergency.",
+      "service": "Maintenance & Tune-Up"
+    }
+  ]
+}

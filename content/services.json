@@ -1,0 +1,100 @@
+{
+  "items": [
+    {
+      "slug": "new-door-installation",
+      "title": "New Door Installation",
+      "shortTitle": "Installation",
+      "excerpt": "Full-service installation of steel, wood, aluminum and custom garage doors — measured, fitted and balanced by hand.",
+      "description": "A new garage door is one of the highest-ROI upgrades you can make to your home. We handle the entire process: an in-home consultation to help you choose the right style and insulation level, precise measurement, professional removal and haul-away of your old door, and installation that is leveled, balanced and safety-tested before we leave your driveway.\n\nWe install all major brands and door types — classic raised-panel steel, modern full-view aluminum and glass, carriage-house styles, and insulated doors that cut energy loss in attached garages.",
+      "features": [
+        "Free in-home consultation & written estimate",
+        "All major brands, styles and insulation levels",
+        "Old door removal and haul-away included",
+        "Balanced, aligned and safety-tested on completion",
+        "10-year workmanship warranty"
+      ],
+      "image": "/images/service-installation.svg",
+      "featured": true
+    },
+    {
+      "slug": "garage-door-repair",
+      "title": "Garage Door Repair",
+      "shortTitle": "Repair",
+      "excerpt": "Doors off track, damaged panels, snapped cables, worn rollers — diagnosed and fixed fast, usually in a single visit.",
+      "description": "A garage door that jerks, grinds, sags or refuses to move is more than an annoyance — it is a safety risk and an open invitation to bigger damage. We arrive with a fully stocked truck, so the vast majority of repairs are completed on the first visit.\n\nWe repair doors of every brand and age: bent tracks, damaged sections, broken hinges, frayed cables, worn rollers, and failed weather seals. You get a clear diagnosis and a flat, written price before any work begins.",
+      "features": [
+        "Same-day service in most cases",
+        "Fully stocked trucks — most repairs done in one visit",
+        "Flat, upfront pricing before work begins",
+        "All brands and door ages",
+        "Parts and labor warranty on every repair"
+      ],
+      "image": "/images/service-repair.svg",
+      "featured": true
+    },
+    {
+      "slug": "spring-replacement",
+      "title": "Spring Replacement",
+      "shortTitle": "Springs",
+      "excerpt": "Broken torsion or extension springs replaced safely with high-cycle springs — never attempt this repair yourself.",
+      "description": "Garage door springs carry the entire weight of your door under extreme tension. When one breaks, the door becomes hundreds of pounds of dead weight — and replacing springs without the proper tools and training is one of the most dangerous DIY repairs there is.\n\nWe replace torsion and extension springs with high-cycle springs rated for 2–4× the life of builder-grade parts, rebalance the door, and inspect cables, bearings and center plates while we are at it.",
+      "features": [
+        "High-cycle springs (up to 4× standard life)",
+        "Torsion and extension systems",
+        "Full balance and safety inspection included",
+        "Emergency same-day replacement",
+        "Both springs replaced to prevent repeat failure"
+      ],
+      "image": "/images/service-springs.svg",
+      "featured": true
+    },
+    {
+      "slug": "opener-installation",
+      "title": "Opener Installation & Repair",
+      "shortTitle": "Openers",
+      "excerpt": "Quiet belt-drive and smart Wi-Fi openers installed, plus repair of chain, screw and belt-drive units of any brand.",
+      "description": "Modern openers are quieter, safer and smarter than what most garages have today. We install belt-drive and wall-mount jackshaft openers with battery backup and smartphone control, so you can open, close and monitor your door from anywhere.\n\nAlready have an opener that strains, reverses or ignores the remote? We repair logic boards, gears, safety sensors and travel limits on all major brands — and we will tell you honestly when a repair no longer makes sense.",
+      "features": [
+        "LiftMaster, Chamberlain, Genie and more",
+        "Smart Wi-Fi openers with phone control",
+        "Battery backup models available",
+        "Safety sensor alignment and testing",
+        "Honest repair-vs-replace advice"
+      ],
+      "image": "/images/service-opener.svg",
+      "featured": true
+    },
+    {
+      "slug": "maintenance-tuneup",
+      "title": "Maintenance & Tune-Up",
+      "shortTitle": "Tune-Up",
+      "excerpt": "A 25-point inspection and tune-up that keeps your door quiet, balanced and out of trouble for years.",
+      "description": "Most garage door failures are preventable. Our 25-point tune-up catches worn parts before they strand your car in the garage: we tighten hardware, lubricate rollers, hinges and springs, check door balance and opener force, test safety reversal, and seal out weather.\n\nAn annual tune-up typically pays for itself by extending spring and opener life — and it keeps the door running whisper-quiet.",
+      "features": [
+        "25-point inspection checklist",
+        "Lubrication of all moving parts",
+        "Balance, force and safety-reversal testing",
+        "Weather seal inspection",
+        "Written condition report with photos"
+      ],
+      "image": "/images/service-maintenance.svg",
+      "featured": false
+    },
+    {
+      "slug": "emergency-service",
+      "title": "24/7 Emergency Service",
+      "shortTitle": "Emergency",
+      "excerpt": "Car trapped, door stuck open at night, snapped spring on a Sunday — we answer the phone and we show up.",
+      "description": "A garage door emergency never checks the calendar. A door stuck open overnight is a security problem; a car trapped inside at 7 AM is a workday problem; a snapped spring is a safety problem. Our emergency line is answered around the clock, and a technician is dispatched with the parts to get your door secured and moving again.\n\nEmergency visits carry clear, published pricing — no surprise multipliers.",
+      "features": [
+        "Real 24/7 phone answering",
+        "Rapid dispatch across our service area",
+        "Door secured and operational on first visit",
+        "Transparent emergency pricing",
+        "Follow-up repair scheduling if parts are special-order"
+      ],
+      "image": "/images/service-emergency.svg",
+      "featured": false
+    }
+  ]
+}

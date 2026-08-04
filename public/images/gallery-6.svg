@@ -11,8 +11,8 @@
 <circle cx="980" cy="150" r="200" fill="#ff9e2b" opacity="0.14"/>
 <circle cx="980" cy="150" r="120" fill="#ff9e2b" opacity="0.12"/>
 <!-- house body -->
-<rect x="260" y="240" width="680" height="400" fill="#40526676"/>
-<polygon points="230,240 600,120 970,240" fill="#40526676" opacity="0.92"/>
+<rect x="260" y="240" width="680" height="400" fill="#405266"/>
+<polygon points="230,240 600,120 970,240" fill="#405266" opacity="0.92"/>
 <polygon points="230,240 600,120 970,240 970,254 230,254" fill="#0c1219"/>
 <!-- side windows -->
 <rect x="285" y="330" width="40" height="90" rx="3" fill="#8fa8bd" opacity="0.55"/>

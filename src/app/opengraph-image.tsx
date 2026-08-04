@@ -39,12 +39,23 @@ export default async function OgImage() {
               borderRadius: 14,
               background: "#f97f0b",
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: 34,
+              gap: 6,
             }}
           >
-            🚪
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                style={{
+                  width: 36,
+                  height: 8,
+                  borderRadius: 3,
+                  background: "#0a0f16",
+                }}
+              />
+            ))}
           </div>
           <div style={{ fontSize: 40, fontWeight: 700 }}>{business.name}</div>
         </div>

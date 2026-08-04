@@ -1,5 +1,20 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const manrope = localFont({
+  src: "../fonts/manrope-latin-wght-normal.woff2",
+  variable: "--font-manrope",
+  weight: "200 800",
+  display: "swap",
+});
+
+const spaceGrotesk = localFont({
+  src: "../fonts/space-grotesk-latin-wght-normal.woff2",
+  variable: "--font-space-grotesk",
+  weight: "300 700",
+  display: "swap",
+});
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { getBusiness, getSeo } from "@/lib/content";
@@ -29,6 +44,12 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0f16",
+  width: "device-width",
+  initialScale: 1,
 };
 
 function LocalBusinessJsonLd() {
@@ -73,15 +94,21 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${manrope.variable} ${spaceGrotesk.variable}`}>
       <body>
         <LocalBusinessJsonLd />
+        <a
+          href="#main"
+          className="sr-only z-[60] rounded-lg bg-brand-500 px-4 py-2 font-bold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+        >
+          Skip to content
+        </a>
         <Header
           businessName={business.name}
           phone={business.phone}
           phoneRaw={business.phoneRaw}
         />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer business={business} />
       </body>
     </html>

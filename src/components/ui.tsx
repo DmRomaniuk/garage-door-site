@@ -41,7 +41,7 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={`/services/${service.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl hover:shadow-ink-900/8"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-ink-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl hover:shadow-ink-900/8"
     >
       <div className="relative aspect-[3/2] overflow-hidden bg-ink-100">
         <Image
@@ -74,7 +74,11 @@ export function ServiceCard({ service }: { service: Service }) {
 
 export function Stars({ rating = 5 }: { rating?: number }) {
   return (
-    <div className="flex gap-0.5 text-brand-400" aria-label={`${rating} out of 5 stars`}>
+    <div
+      role="img"
+      className="flex gap-0.5 text-brand-400"
+      aria-label={`${rating} out of 5 stars`}
+    >
       {Array.from({ length: 5 }).map((_, i) => (
         <StarIcon
           key={i}

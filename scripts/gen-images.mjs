@@ -79,7 +79,7 @@ const images = {
   "gallery-3.svg": scene({ ...palettes.dusk, wall: "#3c4d60", doorFill: "#eef1f5", doorLine: "#a3b2c2", windows: true }),
   "gallery-4.svg": scene({ ...palettes.night, wall: "#2e3c4c", doorFill: "#b8c4d0", doorLine: "#71859c", panels: 5 }),
   "gallery-5.svg": scene({ ...palettes.dawn, wall: "#33455a", glassDoor: true }),
-  "gallery-6.svg": scene({ ...palettes.dusk, wall: "#40526676", doorFill: "#cfd8e2", doorLine: "#8fa0b3", panels: 4 }),
+  "gallery-6.svg": scene({ ...palettes.dusk, wall: "#405266", doorFill: "#cfd8e2", doorLine: "#8fa0b3", panels: 4 }),
 };
 
 for (const [name, svg] of Object.entries(images)) writeFileSync(`public/images/${name}`, svg);

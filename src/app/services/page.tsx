@@ -32,7 +32,7 @@ export default function ServicesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service, i) => (
-              <Reveal key={service.slug} delay={(i % 3) * 80}>
+              <Reveal key={service.slug} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard service={service} />
               </Reveal>
             ))}

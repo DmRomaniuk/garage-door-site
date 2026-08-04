@@ -32,8 +32,6 @@ export default function Header({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
-
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -89,7 +87,7 @@ export default function Header({
           onClick={() => setOpen(!open)}
           className="grid size-10 place-items-center rounded-lg text-white lg:hidden"
         >
-          {open ? <MenuClose /> : <MenuIcon />}
+          {open ? <XIcon /> : <MenuIcon />}
         </button>
       </div>
 
@@ -100,6 +98,7 @@ export default function Header({
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-3 text-base font-semibold text-ink-100 hover:bg-ink-900 hover:text-white"
               >
                 {item.label}
@@ -107,6 +106,7 @@ export default function Header({
             ))}
             <a
               href={`tel:${phoneRaw}`}
+              onClick={() => setOpen(false)}
               className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-brand-500 px-4 py-3.5 text-base font-bold text-ink-950"
             >
               <PhoneIcon width={18} height={18} strokeWidth={2.5} />
@@ -117,8 +117,4 @@ export default function Header({
       )}
     </header>
   );
-
-  function MenuClose() {
-    return <XIcon />;
-  }
 }

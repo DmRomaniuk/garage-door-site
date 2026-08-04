@@ -99,7 +99,7 @@ export default function Footer({ business }: { business: Business }) {
       </div>
 
       <div className="border-t border-ink-900">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-500 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-ink-400 sm:flex-row sm:px-6 lg:px-8">
           <p>
             © {year} {business.legalName}. All rights reserved.
           </p>

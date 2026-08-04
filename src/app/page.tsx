@@ -33,8 +33,22 @@ export default function HomePage() {
   const faq = getFaq();
   const gallery = getGallery().slice(0, 3);
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       {/* ============ HERO ============ */}
       <section className="relative overflow-hidden bg-ink-950 pt-18">
         <div className="absolute inset-0">
@@ -43,7 +57,8 @@ export default function HomePage() {
             alt=""
             fill
             priority
-            className="object-cover opacity-40"
+            sizes="100vw"
+            className="object-cover opacity-25 sm:opacity-40"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/60 to-ink-950" />
         </div>
@@ -102,7 +117,7 @@ export default function HomePage() {
 
       {/* ============ STATS BAR ============ */}
       <section className="border-b border-ink-100 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 divide-x divide-ink-100 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:divide-x lg:divide-ink-100 lg:px-8">
           {[
             [`${business.yearsExperience}+`, "Years in business"],
             [`${business.doorsInstalled.toLocaleString()}+`, "Doors installed"],
@@ -113,7 +128,7 @@ export default function HomePage() {
               <p className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
                 {num}
               </p>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-400 sm:text-sm">
+              <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-500 sm:text-sm">
                 {label}
               </p>
             </div>
@@ -133,7 +148,7 @@ export default function HomePage() {
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => (
-              <Reveal key={service.slug} delay={i * 80}>
+              <Reveal key={service.slug} delay={i * 80} className="h-full">
                 <ServiceCard service={service} />
               </Reveal>
             ))}
@@ -242,8 +257,8 @@ export default function HomePage() {
               ["We do the work", "On time, tidy, and safety-tested. Old doors and parts hauled away free."],
               ["Backed for years", `You get our ${business.warrantyYears}-year workmanship warranty and a real local number to call.`],
             ].map(([title, text], i) => (
-              <Reveal key={title} delay={i * 100}>
-                <div className="relative rounded-2xl border border-ink-800 bg-ink-900/50 p-6">
+              <Reveal key={title} delay={i * 100} className="h-full">
+                <div className="relative h-full rounded-2xl border border-ink-800 bg-ink-900/50 p-6">
                   <span className="font-display text-5xl font-bold text-ink-700">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -320,7 +335,7 @@ export default function HomePage() {
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {testimonials.slice(0, 3).map((t, i) => (
-              <Reveal key={t.name} delay={i * 80}>
+              <Reveal key={t.name} delay={i * 80} className="h-full">
                 <TestimonialCard t={t} />
               </Reveal>
             ))}

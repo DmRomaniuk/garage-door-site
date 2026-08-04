@@ -18,10 +18,18 @@ function handshakePage(payload: string) {
       window.opener.postMessage("authorizing:github", "*");
     })();
   `;
-  return new NextResponse(
+  const res = new NextResponse(
     `<!doctype html><html><body><p>Authorizing…</p><script>${script}</script></body></html>`,
-    { headers: { "Content-Type": "text/html; charset=utf-8" } }
+    {
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+      },
+    }
   );
+  // One-time state cookie is no longer needed.
+  res.cookies.set("oauth_state", "", { maxAge: 0, path: "/" });
+  return res;
 }
 
 export async function GET(req: Request) {

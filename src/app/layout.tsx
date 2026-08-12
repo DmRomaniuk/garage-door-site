@@ -17,6 +17,8 @@ const spaceGrotesk = localFont({
 });
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyCallBar from "@/components/StickyCallBar";
+import { Analytics } from "@vercel/analytics/react";
 import { getBusiness, getSeo } from "@/lib/content";
 
 const business = getBusiness();
@@ -120,6 +122,8 @@ export default function RootLayout({
         />
         <main id="main">{children}</main>
         <Footer business={business} />
+        <StickyCallBar phone={business.phone} phoneRaw={business.phoneRaw} />
+        <Analytics />
       </body>
     </html>
   );

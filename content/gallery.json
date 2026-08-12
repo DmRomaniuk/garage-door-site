@@ -34,7 +34,8 @@
       "title": "Storm damage repair",
       "category": "Repair",
       "image": "/images/gallery-6.svg",
-      "description": "Panel and track replacement after wind damage, Riverton"
+      "beforeImage": "/images/gallery-6-before.svg",
+      "description": "Panel and track replacement after wind damage, Riverton — drag to compare"
     }
   ]
 }

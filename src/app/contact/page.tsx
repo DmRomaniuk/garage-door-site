@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import QuoteForm from "@/components/QuoteForm";
+import GoogleRatingCard from "@/components/GoogleRatingCard";
+import OpenNowBadge from "@/components/OpenNowBadge";
 import { SectionHeading } from "@/components/ui";
 import {
   ClockIcon,
   MailIcon,
   MapPinIcon,
+  MessageIcon,
   PhoneIcon,
 } from "@/components/Icons";
 import { getBusiness } from "@/lib/content";
@@ -44,7 +47,7 @@ export default function ContactPage() {
           <aside className="space-y-6 lg:col-span-2">
             <a
               href={`tel:${business.phoneRaw}`}
-              className="flex items-center gap-4 rounded-2xl bg-ink-950 p-6 text-white transition-all hover:bg-ink-900"
+              className="press flex items-center gap-4 rounded-2xl bg-ink-950 p-6 text-white transition-all hover:bg-ink-900"
             >
               <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-500 text-ink-950">
                 <PhoneIcon width={22} height={22} strokeWidth={2.5} />
@@ -59,11 +62,33 @@ export default function ContactPage() {
               </span>
             </a>
 
+            <a
+              href={`sms:${business.phoneRaw}`}
+              className="press flex items-center gap-4 rounded-2xl border border-ink-100 p-6 transition-all hover:border-ink-300 hover:bg-ink-50"
+            >
+              <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-ink-100 text-ink-800">
+                <MessageIcon width={22} height={22} />
+              </span>
+              <span>
+                <span className="block text-sm text-ink-500">
+                  Prefer texting? Send a photo of the problem
+                </span>
+                <span className="font-display text-lg font-bold text-ink-900">
+                  Text {business.phone}
+                </span>
+              </span>
+            </a>
+
             <div className="rounded-2xl border border-ink-100 p-6">
               <h2 className="flex items-center gap-2.5 font-display font-bold text-ink-900">
                 <ClockIcon width={18} height={18} className="text-brand-500" />
                 Hours
               </h2>
+              <OpenNowBadge
+                hours={business.hours}
+                emergency247={business.emergency247}
+                className="mt-3 text-ink-700"
+              />
               <ul className="mt-4 space-y-2.5 text-sm text-ink-600">
                 {business.hours.map((h) => (
                   <li key={h.days} className="flex justify-between gap-4">
@@ -104,6 +129,19 @@ export default function ContactPage() {
               >
                 {business.email}
               </a>
+            </div>
+
+            <div className="rounded-2xl bg-ink-950 p-6">
+              <p className="mb-4 text-sm font-semibold text-ink-300">
+                Not sure about us yet? See what your neighbors say:
+              </p>
+              <GoogleRatingCard
+                rating={business.googleRating}
+                reviewCount={business.reviewCount}
+                reviewsUrl={business.googleReviewsUrl}
+                businessName={business.name}
+                city={`${business.address.city}, ${business.address.state}`}
+              />
             </div>
           </aside>
         </div>

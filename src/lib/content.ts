@@ -29,6 +29,8 @@ export interface Business {
   licensedInsured: boolean;
   emergency247: boolean;
   warrantyYears: number;
+  /** Link to the business's Google reviews (empty → Maps search fallback). */
+  googleReviewsUrl?: string;
 }
 
 export interface Seo {
@@ -66,6 +68,9 @@ export interface GalleryItem {
   title: string;
   category: string;
   image: string;
+  /** Optional "before" photo — when set, the gallery renders a
+   *  draggable before/after comparison slider. */
+  beforeImage?: string;
   description: string;
 }
 

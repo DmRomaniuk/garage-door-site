@@ -9,6 +9,12 @@ const esc = (s: string) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!
   );
 
+interface QuotePhoto {
+  name: string;
+  type: string;
+  data: string; // base64
+}
+
 interface Quote {
   name: string;
   phone: string;
@@ -16,6 +22,31 @@ interface Quote {
   zip: string;
   service: string;
   message: string;
+  photos: QuotePhoto[];
+}
+
+const MAX_PHOTOS = 3;
+const MAX_PHOTO_BYTES = 1_500_000; // per photo, after client compression
+
+function sanitizePhotos(v: unknown): QuotePhoto[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .slice(0, MAX_PHOTOS)
+    .filter(
+      (p): p is QuotePhoto =>
+        !!p &&
+        typeof p.name === "string" &&
+        typeof p.data === "string" &&
+        /^image\/(jpeg|png|webp)$/.test(p?.type ?? "") &&
+        p.data.length > 0 &&
+        p.data.length < (MAX_PHOTO_BYTES * 4) / 3 &&
+        /^[A-Za-z0-9+/=]+$/.test(p.data)
+    )
+    .map((p, i) => ({
+      name: `photo-${i + 1}.jpg`,
+      type: p.type,
+      data: p.data,
+    }));
 }
 
 async function sendEmail(q: Quote): Promise<boolean> {
@@ -53,6 +84,10 @@ async function sendEmail(q: Quote): Promise<boolean> {
     replyTo: q.email || undefined,
     subject: `New estimate request: ${q.service} — ${q.name}`,
     html,
+    attachments: q.photos.map((p) => ({
+      filename: p.name,
+      content: p.data,
+    })),
   });
 
   if (error) {
@@ -93,6 +128,24 @@ async function sendTelegram(q: Quote): Promise<boolean> {
       console.error("[quote] Telegram error:", res.status, await res.text());
       return false;
     }
+
+    // Photos are best-effort: the lead is already delivered above.
+    for (const p of q.photos) {
+      const form = new FormData();
+      form.append("chat_id", chatId);
+      form.append(
+        "photo",
+        new Blob([Buffer.from(p.data, "base64")], { type: p.type }),
+        p.name
+      );
+      const pr = await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+        method: "POST",
+        body: form,
+      });
+      if (!pr.ok) {
+        console.error("[quote] Telegram photo error:", pr.status);
+      }
+    }
     return true;
   } catch (err) {
     console.error("[quote] Telegram error:", err);
@@ -123,6 +176,7 @@ export async function POST(req: Request) {
     zip: str(body.zip, 10),
     service: str(body.service, 100),
     message: str(body.message, 2000),
+    photos: sanitizePhotos(body.photos),
   };
 
   if (!quote.name || !quote.phone || !quote.service) {

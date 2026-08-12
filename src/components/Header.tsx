@@ -22,11 +22,22 @@ export default function Header({
   phoneRaw: string;
 }) {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      // Hide when scrolling down past the hero, reappear on scroll up.
+      // Only react to meaningful movement so easing tails don't flip state.
+      if (Math.abs(y - lastY) > 8) {
+        setHidden(y > 420 && y > lastY);
+        lastY = y;
+      }
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -42,6 +53,8 @@ export default function Header({
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        hidden && !open ? "-translate-y-full" : "translate-y-0"
+      } ${
         scrolled || open
           ? "bg-ink-950/95 backdrop-blur-md shadow-lg shadow-ink-950/30"
           : "bg-transparent"

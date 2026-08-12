@@ -93,7 +93,7 @@ export function Stars({ rating = 5 }: { rating?: number }) {
 
 export function TestimonialCard({ t }: { t: Testimonial }) {
   return (
-    <figure className="flex h-full flex-col rounded-2xl border border-ink-800 bg-ink-900/60 p-6">
+    <figure className="flex h-full flex-col rounded-2xl border border-ink-800 bg-ink-900/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink-600 hover:bg-ink-900">
       <Stars rating={t.rating} />
       <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-ink-100">
         &ldquo;{t.text}&rdquo;
@@ -123,11 +123,12 @@ export function CtaBanner({
     <section className="relative overflow-hidden bg-ink-950">
       <div
         aria-hidden
-        className="absolute -top-32 right-0 size-96 rounded-full bg-brand-500/15 blur-3xl"
+        className="animate-glow absolute -top-32 right-0 size-96 rounded-full bg-brand-500/15 blur-3xl"
       />
       <div
         aria-hidden
-        className="absolute -bottom-32 left-0 size-96 rounded-full bg-brand-500/10 blur-3xl"
+        className="animate-glow absolute -bottom-32 left-0 size-96 rounded-full bg-brand-500/10 blur-3xl"
+        style={{ animationDelay: "3.5s" }}
       />
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-8">
         <h2 className="font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -137,14 +138,14 @@ export function CtaBanner({
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <a
             href={`tel:${phoneRaw}`}
-            className="flex items-center justify-center gap-2.5 rounded-xl bg-brand-500 px-8 py-4 text-base font-bold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/25"
+            className="btn-shine press flex items-center justify-center gap-2.5 rounded-xl bg-brand-500 px-8 py-4 text-base font-bold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/25"
           >
             <PhoneIcon width={18} height={18} strokeWidth={2.5} />
             Call {phone}
           </a>
           <Link
             href="/contact"
-            className="flex items-center justify-center gap-2 rounded-xl border border-ink-700 bg-ink-900/60 px-8 py-4 text-base font-bold text-white transition-all hover:border-ink-500 hover:bg-ink-800"
+            className="press flex items-center justify-center gap-2 rounded-xl border border-ink-700 bg-ink-900/60 px-8 py-4 text-base font-bold text-white transition-all hover:border-ink-500 hover:bg-ink-800"
           >
             Get a Free Estimate
             <ArrowRightIcon width={18} height={18} />

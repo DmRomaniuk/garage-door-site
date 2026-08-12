@@ -101,6 +101,12 @@ export const DoorIcon = (p: P) => (
   </svg>
 );
 
+export const MessageIcon = (p: P) => (
+  <svg {...base(p)}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
 export const AwardIcon = (p: P) => (
   <svg {...base(p)}>
     <circle cx="12" cy="8" r="6" />

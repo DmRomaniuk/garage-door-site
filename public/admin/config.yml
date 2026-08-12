@@ -53,6 +53,7 @@ collections:
               - { name: licensedInsured, label: "Licensed & insured", widget: boolean }
               - { name: emergency247, label: "24/7 emergency service", widget: boolean }
               - { name: warrantyYears, label: "Warranty (years)", widget: number, value_type: int }
+              - { name: googleReviewsUrl, label: "Google reviews link", widget: string, required: false, hint: "Link to your Google Business reviews. Leave empty to fall back to a Maps search." }
           - name: seo
             label: SEO
             widget: object
@@ -131,6 +132,7 @@ collections:
               - { name: title, label: Title, widget: string }
               - { name: category, label: Category, widget: string, hint: "e.g. Installation, Repair, Openers" }
               - { name: image, label: Photo, widget: image }
+              - { name: beforeImage, label: "Before photo (optional)", widget: image, required: false, hint: "Add a 'before' photo to turn this into a draggable before/after slider" }
               - { name: description, label: Caption, widget: string }
 
   - name: about

@@ -2,11 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import FaqAccordion from "@/components/FaqAccordion";
+import CountUp from "@/components/CountUp";
+import GoogleRatingCard from "@/components/GoogleRatingCard";
+import OpenNowBadge from "@/components/OpenNowBadge";
 import {
   CtaBanner,
   SectionHeading,
   ServiceCard,
-  Stars,
   TestimonialCard,
 } from "@/components/ui";
 import {
@@ -14,6 +16,7 @@ import {
   CheckIcon,
   ClockIcon,
   MapPinIcon,
+  MessageIcon,
   PhoneIcon,
   ShieldIcon,
   ZapIcon,
@@ -64,8 +67,12 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/60 to-ink-950" />
         </div>
 
+        <div
+          aria-hidden
+          className="animate-glow absolute -right-24 top-24 size-96 rounded-full bg-brand-500/15 blur-3xl"
+        />
         <div className="relative mx-auto max-w-7xl px-4 pb-24 pt-16 sm:px-6 sm:pt-24 lg:px-8">
-          <div className="max-w-3xl">
+          <div className="hero-stagger max-w-3xl">
             <p className="inline-flex items-center gap-2 rounded-full border border-ink-700 bg-ink-900/70 px-4 py-1.5 text-sm font-semibold text-ink-200 backdrop-blur">
               <span className="size-2 rounded-full bg-brand-400" />
               Serving {business.address.city}, {business.address.state} &amp;
@@ -83,34 +90,51 @@ export default function HomePage() {
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
                 href={`tel:${business.phoneRaw}`}
-                className="flex items-center justify-center gap-2.5 rounded-xl bg-brand-500 px-8 py-4 text-base font-bold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/30"
+                className="btn-shine press flex items-center justify-center gap-2.5 rounded-xl bg-brand-500 px-8 py-4 text-base font-bold text-ink-950 transition-all hover:bg-brand-400 hover:shadow-xl hover:shadow-brand-500/30"
               >
                 <PhoneIcon width={18} height={18} strokeWidth={2.5} />
                 Call {business.phone}
               </a>
+              <a
+                href={`sms:${business.phoneRaw}`}
+                className="press flex items-center justify-center gap-2 rounded-xl border border-ink-600 bg-ink-900/60 px-8 py-4 text-base font-bold text-white backdrop-blur transition-all hover:border-ink-400 hover:bg-ink-800"
+              >
+                <MessageIcon width={18} height={18} />
+                Text Us
+              </a>
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 rounded-xl border border-ink-600 bg-ink-900/60 px-8 py-4 text-base font-bold text-white backdrop-blur transition-all hover:border-ink-400 hover:bg-ink-800"
+                className="press flex items-center justify-center gap-2 rounded-xl border border-ink-600 bg-ink-900/60 px-8 py-4 text-base font-bold text-white backdrop-blur transition-all hover:border-ink-400 hover:bg-ink-800"
               >
                 Free Estimate
                 <ArrowRightIcon width={18} height={18} />
               </Link>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-ink-300">
-              <span className="flex items-center gap-2">
-                <Stars rating={5} />
-                <strong className="text-white">{business.googleRating}</strong>
-                ({business.reviewCount}+ reviews)
-              </span>
-              <span className="flex items-center gap-2">
-                <ShieldIcon width={16} height={16} className="text-brand-400" />
-                Licensed &amp; Insured
-              </span>
-              <span className="flex items-center gap-2">
-                <ClockIcon width={16} height={16} className="text-brand-400" />
-                24/7 Emergency Service
-              </span>
+            <OpenNowBadge
+              hours={business.hours}
+              emergency247={business.emergency247}
+              className="mt-6 text-ink-200"
+            />
+
+            <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <GoogleRatingCard
+                rating={business.googleRating}
+                reviewCount={business.reviewCount}
+                reviewsUrl={business.googleReviewsUrl}
+                businessName={business.name}
+                city={`${business.address.city}, ${business.address.state}`}
+              />
+              <div className="flex flex-col gap-2.5 text-sm text-ink-300">
+                <span className="flex items-center gap-2">
+                  <ShieldIcon width={16} height={16} className="text-brand-400" />
+                  Licensed &amp; Insured
+                </span>
+                <span className="flex items-center gap-2">
+                  <ClockIcon width={16} height={16} className="text-brand-400" />
+                  24/7 Emergency Service
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -119,15 +143,22 @@ export default function HomePage() {
       {/* ============ STATS BAR ============ */}
       <section className="border-b border-ink-100 bg-white">
         <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 sm:px-6 lg:grid-cols-4 lg:divide-x lg:divide-ink-100 lg:px-8">
-          {[
-            [`${business.yearsExperience}+`, "Years in business"],
-            [`${business.doorsInstalled.toLocaleString()}+`, "Doors installed"],
-            [`${business.googleRating}★`, "Average rating"],
-            [`${business.warrantyYears}-yr`, "Workmanship warranty"],
-          ].map(([num, label]) => (
+          {(
+            [
+              [business.yearsExperience, 0, "", "+", "Years in business"],
+              [business.doorsInstalled, 0, "", "+", "Doors installed"],
+              [business.googleRating, 1, "", "★", "Average rating"],
+              [business.warrantyYears, 0, "", "-yr", "Workmanship warranty"],
+            ] as [number, number, string, string, string][]
+          ).map(([value, decimals, prefix, suffix, label]) => (
             <div key={label} className="px-4 py-8 text-center">
               <p className="font-display text-3xl font-bold text-ink-900 sm:text-4xl">
-                {num}
+                <CountUp
+                  value={value}
+                  decimals={decimals}
+                  prefix={prefix}
+                  suffix={suffix}
+                />
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-ink-500 sm:text-sm">
                 {label}
@@ -137,10 +168,44 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ============ BRANDS MARQUEE ============ */}
+      <section
+        aria-label="Brands we install and service"
+        className="overflow-hidden border-b border-ink-100 bg-ink-50/60 py-5"
+      >
+        <div className="animate-marquee flex w-max items-center gap-14">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              aria-hidden={copy === 1}
+              className="flex items-center gap-14"
+            >
+              {[
+                "LiftMaster",
+                "Chamberlain",
+                "Genie",
+                "Clopay",
+                "Amarr",
+                "Wayne Dalton",
+                "Raynor",
+                "C.H.I.",
+              ].map((brand) => (
+                <span
+                  key={brand}
+                  className="font-display text-sm font-bold uppercase tracking-[0.2em] text-ink-500"
+                >
+                  {brand}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ============ SERVICES ============ */}
       <section className="bg-ink-50/60 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Reveal>
+          <Reveal variant="blur">
             <SectionHeading
               eyebrow="What we do"
               title="Every garage door problem, solved"
@@ -149,7 +214,12 @@ export default function HomePage() {
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => (
-              <Reveal key={service.slug} delay={i * 80} className="h-full">
+              <Reveal
+                key={service.slug}
+                delay={i * 90}
+                variant="scale"
+                className="h-full"
+              >
                 <ServiceCard service={service} />
               </Reveal>
             ))}
@@ -169,7 +239,7 @@ export default function HomePage() {
       {/* ============ WHY US ============ */}
       <section className="py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <Reveal>
+          <Reveal variant="left">
             <div className="relative">
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl">
                 <Image
@@ -192,7 +262,7 @@ export default function HomePage() {
               </div>
             </div>
           </Reveal>
-          <Reveal delay={100}>
+          <Reveal delay={100} variant="right">
             <SectionHeading
               center={false}
               eyebrow="Why homeowners choose us"
@@ -348,7 +418,7 @@ export default function HomePage() {
       <section className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
-            <Reveal>
+            <Reveal variant="left">
               <SectionHeading
                 center={false}
                 eyebrow="Service area"
@@ -373,7 +443,7 @@ export default function HomePage() {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={100}>
+            <Reveal delay={100} variant="right">
               <div className="rounded-3xl border border-ink-100 bg-ink-50/60 p-8 sm:p-10">
                 <h3 className="font-display text-2xl font-bold text-ink-900">
                   Frequently asked questions

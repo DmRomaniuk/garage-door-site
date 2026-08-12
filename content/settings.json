@@ -42,7 +42,8 @@
     "reviewCount": 60,
     "licensedInsured": true,
     "emergency247": true,
-    "warrantyYears": 10
+    "warrantyYears": 10,
+    "googleReviewsUrl": ""
   },
   "seo": {
     "siteUrl": "https://summitgaragedoors.com",

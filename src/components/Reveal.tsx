@@ -2,15 +2,27 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
+const variantClass = {
+  up: "",
+  left: "reveal-left",
+  right: "reveal-right",
+  blur: "reveal-blur",
+  scale: "reveal-scale",
+} as const;
+
+export type RevealVariant = keyof typeof variantClass;
+
 export default function Reveal({
   children,
   className = "",
   delay = 0,
+  variant = "up",
   as: Tag = "div",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  variant?: RevealVariant;
   as?: "div" | "section" | "li" | "article";
 }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -34,8 +46,12 @@ export default function Reveal({
   }, []);
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <Tag ref={ref as any} className={`reveal ${className}`} style={delay ? { transitionDelay: `${delay}ms` } : undefined}>
+    <Tag
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={ref as any}
+      className={`reveal ${variantClass[variant]} ${className}`}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+    >
       {children}
     </Tag>
   );

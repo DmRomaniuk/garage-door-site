@@ -5,9 +5,9 @@
 
 backend:
   name: github
-  repo: OWNER/REPO
+  repo: DmRomaniuk/garage-door-site
   branch: main
-  base_url: https://YOUR-DOMAIN.com
+  base_url: https://garage-door-site-six.vercel.app
   auth_endpoint: api/auth
 
 media_folder: public/uploads

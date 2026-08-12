@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import { CtaBanner, ServiceCard } from "@/components/ui";
 import { ArrowRightIcon, CheckIcon, PhoneIcon } from "@/components/Icons";
-import { getBusiness, getService, getServices } from "@/lib/content";
+import { getBusiness, getSeo, getService, getServices } from "@/lib/content";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -39,6 +39,7 @@ export default async function ServicePage({ params }: Props) {
     .filter((s) => s.slug !== service.slug)
     .slice(0, 3);
 
+  const seo = getSeo();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -52,11 +53,33 @@ export default async function ServicePage({ params }: Props) {
     areaServed: business.serviceArea.map((c) => ({ "@type": "City", name: c })),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: seo.siteUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Services",
+        item: `${seo.siteUrl}/services`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: service.title,
+        item: `${seo.siteUrl}/services/${service.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([jsonLd, breadcrumbJsonLd]),
+        }}
       />
 
       <section className="bg-ink-950 pb-20 pt-40">

@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   },
   description: seo.defaultDescription,
   keywords: seo.keywords,
+  alternates: { canonical: "/" },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : undefined,
   openGraph: {
     type: "website",
     siteName: business.name,
@@ -74,11 +78,17 @@ function LocalBusinessJsonLd() {
       "@type": "City",
       name: city,
     })),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: business.googleRating,
-      reviewCount: business.reviewCount,
-    },
+    // Only claim a rating when real review numbers are set — fabricated
+    // structured-data ratings can trigger a Google spam penalty.
+    ...(business.reviewCount > 0
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: business.googleRating,
+            reviewCount: business.reviewCount,
+          },
+        }
+      : {}),
     openingHours: ["Mo-Fr 07:00-19:00", "Sa 08:00-17:00"],
     priceRange: "$$",
   };

@@ -25,6 +25,7 @@ import {
   getGallery,
   getTestimonials,
 } from "@/lib/content";
+import { citySlug } from "@/lib/slug";
 
 export default function HomePage() {
   const business = getBusiness();
@@ -356,12 +357,18 @@ export default function HomePage() {
               />
               <ul className="mt-8 grid grid-cols-2 gap-3">
                 {business.serviceArea.map((city) => (
-                  <li
-                    key={city}
-                    className="flex items-center gap-2.5 text-[15px] font-semibold text-ink-700"
-                  >
-                    <MapPinIcon width={16} height={16} className="text-brand-500" />
-                    {city}, {business.address.state}
+                  <li key={city}>
+                    <Link
+                      href={`/areas/${citySlug(city)}`}
+                      className="flex items-center gap-2.5 text-[15px] font-semibold text-ink-700 transition-colors hover:text-brand-600"
+                    >
+                      <MapPinIcon
+                        width={16}
+                        height={16}
+                        className="text-brand-500"
+                      />
+                      {city}, {business.address.state}
+                    </Link>
                   </li>
                 ))}
               </ul>

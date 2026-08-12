@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { getSeo, getServices } from "@/lib/content";
+import { getBusiness, getSeo, getServices } from "@/lib/content";
+import { citySlug } from "@/lib/slug";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSeo().siteUrl.replace(/\/$/, "");
@@ -20,5 +21,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...servicePages];
+  const cityPages: MetadataRoute.Sitemap = getBusiness().serviceArea.map(
+    (city) => ({
+      url: `${base}/areas/${citySlug(city)}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    })
+  );
+
+  return [...staticPages, ...servicePages, ...cityPages];
 }

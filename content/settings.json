@@ -1,16 +1,16 @@
 {
   "business": {
-    "name": "Summit Garage Doors",
-    "legalName": "Summit Garage Doors LLC",
+    "name": "Andreyka Garage Doors",
+    "legalName": "Andreyka Garage Doors LLC",
     "tagline": "Garage door installation & repair done right",
-    "phone": "(555) 123-4567",
-    "phoneRaw": "+15551234567",
-    "email": "info@summitgaragedoors.com",
+    "phone": "(555) 123-0000",
+    "phoneRaw": "+15551230000",
+    "email": "info@andreykagaragedoors.com",
     "address": {
-      "street": "123 Main Street",
-      "city": "Springfield",
+      "street": "000 Main Street",
+      "city": "Chicago",
       "state": "IL",
-      "zip": "62704"
+      "zip": "00000"
     },
     "serviceArea": [
       "Springfield",
@@ -23,21 +23,30 @@
       "Pleasant Plains"
     ],
     "hours": [
-      { "days": "Monday – Friday", "hours": "7:00 AM – 7:00 PM" },
-      { "days": "Saturday", "hours": "8:00 AM – 5:00 PM" },
-      { "days": "Sunday", "hours": "Emergency service only" }
+      {
+        "days": "Monday – Friday",
+        "hours": "8:00 AM – 4:00 PM"
+      },
+      {
+        "days": "Saturday",
+        "hours": "8:00 AM – 4:00 PM"
+      },
+      {
+        "days": "Sunday",
+        "hours": "Emergency service only"
+      }
     ],
-    "yearsExperience": 15,
-    "doorsInstalled": 2400,
+    "yearsExperience": 5,
+    "doorsInstalled": 500,
     "googleRating": 4.9,
-    "reviewCount": 180,
+    "reviewCount": 60,
     "licensedInsured": true,
     "emergency247": true,
     "warrantyYears": 10
   },
   "seo": {
     "siteUrl": "https://summitgaragedoors.com",
-    "defaultTitle": "Summit Garage Doors | Garage Door Installation & Repair in Springfield, IL",
+    "defaultTitle": "Andreyka Garage Doors | Garage Door Installation & Repair in Springfield, IL",
     "defaultDescription": "Professional garage door installation, repair and maintenance in Springfield, IL and surrounding areas. Licensed & insured, same-day service, free estimates. Call (555) 123-4567.",
     "keywords": [
       "garage door installation",
